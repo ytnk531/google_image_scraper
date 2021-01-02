@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['ytnk531@gmail.com']
 
   spec.summary       = 'An image downloader using Google image search.'
-  spec.description   = 'An image downloader using Google image search.'
+  spec.description   = 'An image downloader using Google image search. This is unofficial gem.'
   spec.homepage      = 'https://github.com/ytnk531/google_image_scraper'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
