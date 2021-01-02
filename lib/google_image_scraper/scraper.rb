@@ -10,17 +10,18 @@ module GoogleImageScraper
     def initialize
       @driver = setup_driver
       @file_saver = FileSaver.new
+      @wait = Selenium::WebDriver::Wait.new(timeout: 10)
     end
 
     def scrape(keyword, limit = nil)
       @driver.get search_page_url(keyword)
-      img_end = limit - 1 || -1
+      img_end = limit&.-(1) || -1
       start = 0
 
       loop do
         # After 2nd time of this execution, html_elements are increased than previous execution.
         # This is because search page uses continuous loading triggered by scroll point.
-        elements = @driver.find_elements(css: 'img')
+        elements = @driver.find_elements(css: '.mJxzWe img')
         break if start == elements.size
 
         download_images elements[start..img_end]
@@ -40,14 +41,13 @@ module GoogleImageScraper
       html_elements.each do |element|
         # Show image in left side and then wait for large image will be displayed.
         element.click
-        sleep(1)
 
-        large_picture_element = @driver.find_element(:xpath, LARGE_PICTURE_XPATH)
+        sleep 0.4
+        large_picture_element = @wait.until do
+          @driver.find_element(:xpath, LARGE_PICTURE_XPATH)
+        end
         src = large_picture_element.attribute('src')
         @file_saver.save(src)
-      rescue StandardError => e
-        logger.error(e.full_message)
-        next
       end
     end
 
