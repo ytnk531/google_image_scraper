@@ -48,6 +48,8 @@ module GoogleImageScraper
         end
         src = large_picture_element.attribute('src')
         @file_saver.save(src)
+      rescue OpenURI::HTTPError => e
+        Logger.error e.full_message
       end
     end
 
