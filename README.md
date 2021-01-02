@@ -1,28 +1,27 @@
 # GoogleImageScraper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/google_image_scraper`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A command line tool for downloadng image from Google Image Search.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'google_image_scraper'
+```
+$ gem install google_image_scraper
 ```
 
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install google_image_scraper
-
 ## Usage
+Execute `google_image_scaper` with `search_word`.
+If you want to limit the amount of downloaded images, specify an integer as `max_number`.
 
-TODO: Write usage instructions here
+```
+$ google_image_scraper search_word [max_number]
+```
+
+After execution of this command, downloaded images will be saved at a directory named current date with YYYYMMDDHHMM format(e.g. 202001011023).
+
+e.g.
+```
+$ google_image_scraper cat
+$ google_image_scraper cat 10
+```
 
 ## Development
 
@@ -32,7 +31,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/google_image_scraper.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ytnk531/google_image_scraper.
 
 ## License
 

@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
-require "google_image_scraper"
+require 'google_image_scraper'
+
+keyword = ARGV[0]
+limit = ARGV[1]&.to_i || nil
+GoogleImageScraper::Scraper.new.scrape(keyword, limit)
